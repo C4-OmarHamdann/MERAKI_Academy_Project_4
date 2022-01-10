@@ -7,6 +7,7 @@ const db = require("./database/db");
 // Import Routers
 
 const usersRouter = require("./routes/users");
+const loginRouter = require("./routes/login");
 
 app.use(cors());
 
@@ -17,6 +18,7 @@ const PORT = 5000;
 // Routes Middleware
 
 app.use("/users", usersRouter);
+app.use("/login", loginRouter);
 
 // Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));
