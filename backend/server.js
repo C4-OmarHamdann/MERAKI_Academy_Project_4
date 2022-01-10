@@ -8,6 +8,7 @@ const db = require("./database/db");
 
 const usersRouter = require("./routes/users");
 const loginRouter = require("./routes/login");
+const postesRouter = require("./routes/postes");
 
 app.use(cors());
 
@@ -19,7 +20,7 @@ const PORT = 5000;
 
 app.use("/users", usersRouter);
 app.use("/login", loginRouter);
-
+app.use("/postes", postesRouter);
 // Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));
 

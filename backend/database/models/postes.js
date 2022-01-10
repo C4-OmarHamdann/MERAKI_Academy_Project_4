@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const postes = new mongoose.Schema({
-  userName: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  userName: { type: mongoose.Schema.Types.String, ref: "User" },
 
   poste: { type: String, required: true },
   like: { type: Number, default: 0 },
