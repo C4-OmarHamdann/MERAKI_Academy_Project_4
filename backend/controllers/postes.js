@@ -5,10 +5,11 @@ const postesModel = require("../database/models/postes");
 //create new poste
 const createNewPostes = (req, res) => {
   const { poste } = req.body;
+  console.log(req.file);
   const newPostes = new postesModel({
     poste: poste,
-    fileName: { type: String },
-    mimetype: { type: String },
+    fileName: req.file.filename + "." + req.file.mimetype.split("/")[1],
+    mimetype: req.file.mimetype,
     userName: req.token.userName,
   });
 
