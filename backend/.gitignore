@@ -6,5 +6,5 @@
 uploads/*
 
 # exception to the rule
-!uploads/.test
+!uploads/.aa
 
