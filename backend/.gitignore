@@ -2,5 +2,9 @@
 # dependencies
 /node_modules
 
+# exclude everything
+uploads/*
 
+# exception to the rule
+!uploads/.test
 
