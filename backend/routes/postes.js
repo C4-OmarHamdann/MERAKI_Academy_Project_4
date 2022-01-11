@@ -3,7 +3,11 @@ const multer = require("multer");
 
 const upload = multer({ dest: "uploads/" });
 
-const { createNewPostes } = require("../controllers/postes");
+const {
+  createNewPostes,
+  getAllPostes,
+  getPostesById,
+} = require("../controllers/postes");
 
 // Middleware
 const authentication = require("../middleware/authentication");
@@ -11,4 +15,7 @@ const authentication = require("../middleware/authentication");
 const postesRouter = express.Router();
 
 postesRouter.post("/", authentication, upload.single("media"), createNewPostes);
+postesRouter.get("/", authentication, getAllPostes);
+
+postesRouter.get("/search_2", getPostesById);
 module.exports = postesRouter;
