@@ -118,10 +118,35 @@ const getPostesByUser = (req, res) => {
     });
 };
 
-getPostesByUser;
+// This function deletes a specific post by its id
+const deleteposteById = (req, res) => {
+  const id = req.params.id;
+  postesModel
+    .findByIdAndDelete(id)
+    .then((result) => {
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: `The post: ${id} is not found`,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `Succeeded to delete post with id: ${id}`,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    });
+};
+
 module.exports = {
   createNewPostes,
   getAllPostes,
   getPostesById,
   getPostesByUser,
+  deleteposteById,
 };
