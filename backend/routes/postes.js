@@ -9,6 +9,7 @@ const {
   getPostesById,
   getPostesByUser,
   deleteposteById,
+  updatePostById,
 } = require("../controllers/postes");
 
 // Middleware
@@ -22,5 +23,6 @@ postesRouter.get("/", authentication, getAllPostes);
 postesRouter.get("/search_2", getPostesById);
 postesRouter.get("/search_1", getPostesByUser);
 postesRouter.delete("/:id", deleteposteById);
+postesRouter.put("/:id", updatePostById);
 
 module.exports = postesRouter;
