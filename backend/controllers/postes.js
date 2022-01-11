@@ -35,7 +35,7 @@ const getAllPostes = (req, res) => {
 //create new poste
 const createNewPostes = (req, res) => {
   const { poste } = req.body;
-  console.log(req.file);
+
   const newPostes = new postesModel({
     poste: poste,
     fileName: req.file.filename + "." + req.file.mimetype.split("/")[1],
@@ -62,7 +62,7 @@ const createNewPostes = (req, res) => {
 };
 
 //get poste by id
-// This function returns postes by its userName
+// This function returns postes by its id
 const getPostesById = (req, res) => {
   let id = req.query.id;
   postesModel
@@ -89,8 +89,39 @@ const getPostesById = (req, res) => {
       });
     });
 };
+
+//get poste by userName
+// This function returns postes by its user name
+const getPostesByUser = (req, res) => {
+  let userName = req.query.userName;
+  postesModel
+    .find({ userName: userName })
+    .then((postes) => {
+      if (!postes.length) {
+        return res.status(404).json({
+          success: false,
+          message: `The user: ${userName} does not have posts`,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `All the posts for the user: ${userName}`,
+        postes: postes,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        success: false,
+        message: err,
+      });
+    });
+};
+
+getPostesByUser;
 module.exports = {
   createNewPostes,
   getAllPostes,
   getPostesById,
+  getPostesByUser,
 };

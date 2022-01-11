@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const postes = new mongoose.Schema({
   userName: { type: mongoose.Schema.Types.String, ref: "User" },
-
   poste: { type: String, required: true },
   fileName: { type: String },
   mimetype: { type: String },

@@ -7,6 +7,7 @@ const {
   createNewPostes,
   getAllPostes,
   getPostesById,
+  getPostesByUser,
 } = require("../controllers/postes");
 
 // Middleware
@@ -18,4 +19,5 @@ postesRouter.post("/", authentication, upload.single("media"), createNewPostes);
 postesRouter.get("/", authentication, getAllPostes);
 
 postesRouter.get("/search_2", getPostesById);
+postesRouter.get("/search_1", getPostesByUser);
 module.exports = postesRouter;
