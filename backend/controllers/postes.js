@@ -38,8 +38,8 @@ const createNewPostes = (req, res) => {
 
   const newPostes = new postesModel({
     poste: poste,
-    fileName: req.file.filename + "." + req.file.mimetype.split("/")[1],
-    mimetype: req.file.mimetype,
+    fileName: req?.file?.filename + "." + req?.file?.mimetype.split("/")[1],
+    mimetype: req?.file?.mimetype,
     userName: req.token.userName,
   });
 
