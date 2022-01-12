@@ -61,7 +61,33 @@ const updateCommentById = (req, res) => {
       });
     });
 };
+
+// This function deletes a specific commenter by its id
+const deleteCommentById = (req, res) => {
+  const id = req.params.id;
+  commentsModel
+    .findByIdAndDelete(id)
+    .then((result) => {
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: `The comment: ${id} is not found`,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `Succeeded to delete comment with id: ${id}`,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+      });
+    });
+};
 module.exports = {
   createNewComment,
   updateCommentById,
+  deleteCommentById,
 };
