@@ -3,6 +3,7 @@ const multer = require("multer");
 const {
   createNewComment,
   updateCommentById,
+  deleteCommentById,
 } = require("../controllers/comments");
 
 const upload = multer({ dest: "uploads/" });
@@ -37,5 +38,5 @@ postesRouter.post(
 );
 
 postesRouter.put("/comments/:id", authentication, updateCommentById);
-
+postesRouter.delete("/comments/:id", authentication, deleteCommentById);
 module.exports = postesRouter;
