@@ -7,8 +7,8 @@ const createNewComment = (req, res) => {
   const { comment } = req.body;
   const newComment = new commentsModel({
     comment,
-    fileName: req.file.filename,
-    mimetype: req.file.mimetype,
+    fileName: req?.file?.filename,
+    mimetype: req?.file?.mimetype,
     commenter: req.token.userName,
   });
   newComment
