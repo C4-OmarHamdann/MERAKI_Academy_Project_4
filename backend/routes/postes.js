@@ -1,5 +1,6 @@
 const express = require("express");
 const multer = require("multer");
+const { createNewComment } = require("../controllers/comments");
 
 const upload = multer({ dest: "uploads/" });
 
@@ -24,5 +25,12 @@ postesRouter.get("/search_2", getPostesById);
 postesRouter.get("/search_1", getPostesByUser);
 postesRouter.delete("/:id", deleteposteById);
 postesRouter.put("/:id", updatePostById);
+////comments
+postesRouter.post(
+  "/:poste_id/comments",
+  authentication,
+  upload.single("media"),
+  createNewComment
+);
 
 module.exports = postesRouter;
