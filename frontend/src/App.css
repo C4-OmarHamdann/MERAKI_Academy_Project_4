@@ -1,29 +1,33 @@
-.App {
+body {
+  background-color: rgb(37, 36, 36);
+  color: antiquewhite;
+  font-family: sans-serif;
+}
+.form h2,
+h1 {
   text-align: center;
 }
-
+.form h5 {
+  padding: 0;
+}
+.red {
+  border: 3px dashed tomato;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+.orange {
+  border: 3px dashed orange;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+.purple {
+  border: 3px dashed purple;
+  margin-top: 1rem;
+}
 .blue {
   border: 3px dashed blue;
   margin-top: 1rem;
   padding: 1rem;
-}
-.blue.form label {
-  text-align: left;
-  padding-left: 1rem;
-}
-.blue.form button {
-  background-color: green;
-  padding: 0.8rem 3rem;
-  border-radius: 15px;
-  border: none;
-  width: 30%;
-  margin: auto;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-}
-.blue.form button:hover {
-  background-color: darkgreen;
 }
 .form {
   display: flex;
@@ -43,11 +47,49 @@
   padding: 15px;
 }
 
+/* message */
+.done {
+  background-color: rgb(46, 214, 68);
+  margin: 5px;
+  padding: 15px;
+}
+.error {
+  background-color: tomato;
+
+  margin: 5px;
+  padding: 15px;
+}
+.navigation {
+  background-color: rebeccapurple;
+  display: flex;
+  padding: 1rem;
+}
+.navigation a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  padding: 0 0.4rem;
+  justify-content: start;
+  margin-top: 0.9rem;
+}
+.navigation .auth-button {
+  margin-left: auto;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  color: #fff;
+  margin-top: 0;
+}
+.purple.form label,
 .blue.form label {
   text-align: left;
   padding-left: 1rem;
 }
-
+.purple.form {
+  padding: 1rem;
+}
+.purple.form button,
+.red.form button,
+.orange.form button,
 .blue.form button {
   background-color: green;
   padding: 0.8rem 3rem;
@@ -60,16 +102,59 @@
   font-weight: bold;
   cursor: pointer;
 }
-
-/* message */
-.done {
-  background-color: rgb(46, 214, 68);
-  margin: 5px;
-  padding: 15px;
+.purple.form button:hover,
+.red.form button:hover,
+.orange.form button:hover,
+.blue.form button:hover {
+  background-color: darkgreen;
 }
-.error {
-  background-color: tomato;
-
-  margin: 5px;
-  padding: 15px;
+.article-card {
+  background-color: #ccc;
+  color: #343a40;
+  padding: 1rem;
+  margin: 1rem;
+  text-align: left;
+  border-radius: 15px;
+}
+.article-card .form input {
+  border-radius: 15px;
+  border: none;
+  width: 98%;
+  height: 25px;
+  margin: 0;
+}
+.add-button {
+  color: #fff;
+  font-size: 14px;
+  padding: 0.8rem 2rem;
+  margin: 1rem;
+  border-radius: 15px;
+  background-color: green;
+  cursor: pointer;
+  border: none;
+}
+.update-button {
+  color: #fff;
+  font-size: 14px;
+  padding: 0.8rem 2rem;
+  margin: 1rem;
+  border-radius: 15px;
+  background-color: blue;
+  cursor: pointer;
+  border: none;
+}
+.delete-button {
+  color: #fff;
+  font-size: 14px;
+  padding: 0.8rem 2rem;
+  margin: 1rem;
+  border-radius: 15px;
+  background-color: red;
+  cursor: pointer;
+  border: none;
+}
+.not-found {
+  margin-top: 10rem;
+  color: red;
+  font-weight: bold;
 }
