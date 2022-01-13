@@ -3,9 +3,7 @@ const usersModel = require("../database/models/users");
 const createNewUser = (req, res) => {
   const { firstName, lastName, userName, age, country, email, password } =
     req.body;
-  if (age < 18) {
-    return res.json("you are young");
-  }
+
   const user = new usersModel({
     firstName,
     lastName,
