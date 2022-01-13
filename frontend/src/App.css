@@ -1,3 +1,75 @@
 .App {
   text-align: center;
 }
+
+.blue {
+  border: 3px dashed blue;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+.blue.form label {
+  text-align: left;
+  padding-left: 1rem;
+}
+.blue.form button {
+  background-color: green;
+  padding: 0.8rem 3rem;
+  border-radius: 15px;
+  border: none;
+  width: 30%;
+  margin: auto;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+.blue.form button:hover {
+  background-color: darkgreen;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.form input {
+  background-color: antiquewhite;
+  color: black;
+  margin: 20px;
+  padding: 8px;
+}
+.form textarea {
+  background-color: antiquewhite;
+  color: black;
+  margin: 20px;
+  padding: 15px;
+}
+
+.blue.form label {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.blue.form button {
+  background-color: green;
+  padding: 0.8rem 3rem;
+  border-radius: 15px;
+  border: none;
+  width: 30%;
+  margin: auto;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* message */
+.done {
+  background-color: rgb(46, 214, 68);
+  margin: 5px;
+  padding: 15px;
+}
+.error {
+  background-color: tomato;
+
+  margin: 5px;
+  padding: 15px;
+}
