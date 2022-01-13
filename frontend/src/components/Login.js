@@ -24,7 +24,6 @@ const Login = ({ loggedin }) => {
       .post("http://localhost:5000/login", body)
       .then((result) => {
         setToken(result.data.token);
-
         localStorage.setItem("userToken", result.data.token);
         loggedin(true);
         navigate("/home");
