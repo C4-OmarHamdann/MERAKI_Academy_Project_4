@@ -40,6 +40,7 @@ const createNewPostes = (req, res) => {
     fileName: req?.file?.filename + "." + req?.file?.mimetype.split("/")[1],
     mimetype: req?.file?.mimetype,
     userName: req.token.userName,
+    name: req.token.name,
   });
 
   newPostes
