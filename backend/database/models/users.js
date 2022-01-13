@@ -9,7 +9,6 @@ const userSchema = new mongoose.Schema({
   country: { type: String },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  postes: { type: Array },
 });
 
 userSchema.pre("save", async function () {
