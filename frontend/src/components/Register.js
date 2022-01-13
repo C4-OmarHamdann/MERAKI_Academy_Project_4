@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 
 const Register = () => {
@@ -20,8 +22,9 @@ const Register = () => {
     email: email,
     password: password,
   };
-  //cheack done or not
+  const navigate = useNavigate();
 
+  //cheack done or not
   const [cheack, setCheack] = useState("");
   const [message, setMessage] = useState("");
   //add users
@@ -126,6 +129,15 @@ const Register = () => {
         required
       />
       <button onClick={addUsers}>Register</button>
+      <h2>OR</h2>
+      <button
+        style={{ backgroundColor: "blue" }}
+        onClick={() => {
+          navigate("/login");
+        }}
+      >
+        Login
+      </button>
       {/* //cheack if add user or not massge
       //if done or undfinde  */}
       {cheack === "done" ? (
