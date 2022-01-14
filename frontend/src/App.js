@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+
 const App = () => {
   const token = localStorage.getItem("userToken");
   const [isLoggedIn, setisLoggedIn] = useState(false);
@@ -12,6 +13,7 @@ const App = () => {
       <h1>Welcome To App</h1>
 
       <Routes>
+        {" "}
         <Route path="/" element={<Register />} />
         <Route path="/register" element={<Register />} />
         <Route
@@ -19,19 +21,12 @@ const App = () => {
           element={<Login loggedin={setisLoggedIn} />}
           setisLoggedIn={setisLoggedIn}
         />
-
         <Route
           path="/home"
           element={
-            token ? (
-              <Home token={token} />
-            ) : (
-              <div>
-                <h1 className="not-found">401</h1>
-                <p>Unauthorized Request</p>
-              </div>
-            )
+            token ? <Home token={token} /> : <Login loggedin={setisLoggedIn} />
           }
+          setisLoggedIn={setisLoggedIn}
         />
         <Route
           path="*"

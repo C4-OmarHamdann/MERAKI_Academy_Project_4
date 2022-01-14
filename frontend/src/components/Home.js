@@ -1,5 +1,4 @@
 import axios from "axios";
-
 import React, { useState, useEffect } from "react";
 
 const Home = ({ token }) => {
@@ -35,9 +34,15 @@ const Home = ({ token }) => {
         <div className="poste-card" key={i}>
           <h2>{el.name || el.userName}</h2>
           <h5>{"@" + el.userName}</h5>
-          <h4>{el.poste}</h4>
+          <h4>{el?.poste}</h4>
+          <img
+            width={500}
+            height={300}
+            src={`http://localhost:5000/uploads/${el?.fileName}`}
+            alt="media"
+          />
 
-          {userName == el.userName ? (
+          {userName === el.userName ? (
             <>
               <button className="update-button" id={el._id}>
                 Update
@@ -56,7 +61,7 @@ const Home = ({ token }) => {
   ///////////jsx code
   return (
     <div className="blue">
-      {postesMap.length ? <>{postesMap}</> : <h2>NO Postes</h2>}
+      {postesMap?.length ? <>{postesMap}</> : <h2>NO Postes</h2>}
     </div>
   );
 };
