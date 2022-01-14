@@ -35,10 +35,11 @@ const getAllPostes = (req, res) => {
 //create new poste
 const createNewPostes = (req, res) => {
   const { poste } = req.body;
+  console.log(req.file.path);
   const newPostes = new postesModel({
     poste: poste,
-    fileName: req?.file?.filename + "." + req?.file?.mimetype.split("/")[1],
-    mimetype: req?.file?.mimetype,
+    fileName: req?.file?.filename,
+
     userName: req.token.userName,
     name: req.token.name,
   });
