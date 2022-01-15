@@ -8,6 +8,7 @@ const postes = new mongoose.Schema({
   like: { type: Number, default: 0 },
   date: { type: Date, default: Date.now() },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+  name: { type: String },
 });
 
 module.exports = mongoose.model("Postes", postes);
