@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 const Home = ({ token }) => {
   const [postes, setPostes] = useState([]);
   const [userName, setUserName] = useState("");
@@ -81,6 +81,17 @@ const Home = ({ token }) => {
   return (
     <div className="blue">
       {postesMap?.length ? <>{postesMap}</> : <h2>NO Postes</h2>}
+      <Link to="/login">
+        {" "}
+        <button
+          onClick={() => {
+            localStorage.removeItem("userToken");
+          }}
+          className="delete-button"
+        >
+          logout
+        </button>
+      </Link>
     </div>
   );
 };
