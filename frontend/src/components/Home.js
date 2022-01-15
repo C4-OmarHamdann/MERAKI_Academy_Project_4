@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import CreateNewPost from "./CreateNewPost";
+import Search from "./Search";
 
 const Home = ({ token }) => {
   const [postes, setPostes] = useState([]);
@@ -86,6 +87,9 @@ const Home = ({ token }) => {
   return (
     <div className="blue">
       <CreateNewPost token={token} allPost={allPostes} />
+
+      <Search setPost={setPostes} allPost={allPostes} />
+
       {postesMap?.length ? <>{postesMap}</> : <h2>NO Postes</h2>}
       <Link to="/login">
         {" "}
