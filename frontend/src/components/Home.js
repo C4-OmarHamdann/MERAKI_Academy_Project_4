@@ -26,6 +26,21 @@ const Home = ({ token }) => {
       });
   };
 
+  /////delete articles
+  const deletePoste = ({ target }) => {
+    axios
+      //send data from body object
+      .delete(`http://localhost:5000/postes/${target.id}`)
+      .then((result) => {
+        allPostes();
+      })
+      .catch((err) => {
+        //if error
+
+        console.log(err.response.data);
+      });
+  };
+
   /////show all postes
   const postesMap =
     postes &&
@@ -47,7 +62,11 @@ const Home = ({ token }) => {
               <button className="update-button" id={el._id}>
                 Update
               </button>
-              <button className="delete-button" id={el._id}>
+              <button
+                className="delete-button"
+                id={el._id}
+                onClick={deletePoste}
+              >
                 Delete
               </button>
             </>

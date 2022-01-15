@@ -22,7 +22,7 @@ app.use("/users", usersRouter);
 app.use("/login", loginRouter);
 app.use("/postes", postesRouter);
 // Handles any other endpoints [unassigned - endpoints]
-//create uploads end point to show file public
+//create uploads end point to show file
 app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));
 
