@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+
 import { Link } from "react-router-dom";
+import CreateNewPost from "./CreateNewPost";
+
 const Home = ({ token }) => {
   const [postes, setPostes] = useState([]);
   const [userName, setUserName] = useState("");
@@ -50,12 +53,14 @@ const Home = ({ token }) => {
           <h2>{el.name || el.userName}</h2>
           <h5>{"@" + el.userName}</h5>
           <h4>{el?.poste}</h4>
-          <img
-            width={500}
-            height={300}
-            src={`http://localhost:5000/uploads/${el?.fileName}`}
-            alt="media"
-          />
+          {el.fileName && (
+            <img
+              width={500}
+              height={300}
+              src={`http://localhost:5000/uploads/${el?.fileName}`}
+              alt="media"
+            />
+          )}
 
           {userName === el.userName ? (
             <>
@@ -80,6 +85,7 @@ const Home = ({ token }) => {
   ///////////jsx code
   return (
     <div className="blue">
+      <CreateNewPost token={token} allPost={allPostes} />
       {postesMap?.length ? <>{postesMap}</> : <h2>NO Postes</h2>}
       <Link to="/login">
         {" "}
