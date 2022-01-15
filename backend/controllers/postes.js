@@ -35,7 +35,7 @@ const getAllPostes = (req, res) => {
 //create new poste
 const createNewPostes = (req, res) => {
   const { poste } = req.body;
-  console.log(req.file.path);
+
   const newPostes = new postesModel({
     poste: poste,
     fileName: req?.file?.filename,
