@@ -8,7 +8,10 @@ import Search from "./Search";
 const Home = ({ token }) => {
   const [postes, setPostes] = useState([]);
   const [userName, setUserName] = useState("");
+  //update
 
+  const [newPost, setNewPost] = useState("");
+  const [updated, setUpdated] = useState(false);
   useEffect(() => {
     allPostes();
   }, []);
@@ -45,6 +48,26 @@ const Home = ({ token }) => {
       });
   };
 
+  /////update post
+
+  //function
+  const updatePost = (id) => {
+    axios
+      //send data from body object
+      .put(`http://localhost:5000/postes/${id}`, {
+        poste: newPost,
+      })
+      .then((result) => {
+        setUpdated(!updated);
+
+        allPostes();
+      })
+      .catch((err) => {
+        //if error
+        console.log(err.response.data);
+      });
+  };
+
   /////show all postes
   const postesMap =
     postes &&
@@ -65,7 +88,36 @@ const Home = ({ token }) => {
 
           {userName === el.userName ? (
             <>
-              <button className="update-button" id={el._id}>
+              {updated ? (
+                <>
+                  <div className="form">
+                    <textarea
+                      onChange={(e) => {
+                        setNewPost(e.target.value);
+                      }}
+                      cols="30"
+                      rows="10"
+                      placeholder="New post..."
+                      required
+                    ></textarea>
+                  </div>
+                  <button
+                    className="delete-button"
+                    onClick={() => {
+                      setUpdated(false);
+                    }}
+                  >
+                    close
+                  </button>
+                </>
+              ) : (
+                <></>
+              )}
+              <button
+                className="update-button"
+                id={el._id}
+                onClick={() => updatePost(el._id)}
+              >
                 Update
               </button>
               <button
