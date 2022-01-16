@@ -42,6 +42,7 @@ const createNewPostes = (req, res) => {
 
     userName: req.token.userName,
     name: req.token.name,
+    avatar: req.token.avatar,
   });
 
   newPostes
