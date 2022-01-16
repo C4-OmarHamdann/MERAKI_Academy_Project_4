@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
   country: { type: String },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  fileName: { type: String },
 });
 
 userSchema.pre("save", async function () {
