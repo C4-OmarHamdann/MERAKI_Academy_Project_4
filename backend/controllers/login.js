@@ -29,6 +29,7 @@ const login = (req, res) => {
           userName: result.userName,
           name: result.firstName + " " + result.lastName,
           country: result.country,
+          avatar: result?.fileName,
         };
 
         const options = {
