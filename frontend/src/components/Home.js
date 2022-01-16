@@ -74,6 +74,23 @@ const Home = ({ token }) => {
     postes.map((el, i) => {
       return (
         <div className="poste-card" key={i}>
+          {el.avatar ? (
+            <img
+              width={50}
+              height={50}
+              src={`http://localhost:5000/uploads/${el?.avatar}`}
+              alt="media"
+            />
+          ) : (
+            <img
+              width={50}
+              height={50}
+              src={`https://ui-avatars.com/api/?name=${el.name
+                ?.split(" ")
+                .join("+")}`}
+              alt="media"
+            />
+          )}
           <h2>{el.name || el.userName}</h2>
           <h5>{"@" + el.userName}</h5>
           <h4>{el?.poste}</h4>
