@@ -12,6 +12,7 @@ const createNewUser = (req, res) => {
     country,
     email,
     password,
+    fileName: req?.file?.filename,
   });
 
   user
