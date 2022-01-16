@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UploadFile from "./UploadFile";
 
 import axios from "axios";
 
@@ -12,42 +13,38 @@ const Register = () => {
   const [country, setCountry] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //save data in body
-  const body = {
-    firstName: firstName,
-    lastName: lastName,
-    userName: userName,
-    age: age,
-    country: country,
-    email: email,
-    password: password,
-  };
+  //upload
+  const [file, setFile] = useState("");
+
+  //**************************** */
+  //save data in form data
+  const formData = new FormData();
+  formData.append("firstName", firstName);
+  formData.append("lastName", lastName);
+  formData.append("userName", userName);
+  formData.append("age", age);
+  formData.append("country", country);
+  formData.append("email", email);
+  formData.append("password", password);
+  formData.append("media", file);
+
+  //************************************* */
+
   const navigate = useNavigate();
 
   //cheack done or not
   const [cheack, setCheack] = useState("");
   const [message, setMessage] = useState("");
   //add users
-  const addUsers = () => {
-    // if (firstName) {
-    //   setCheack("error");
-    // } else if (lastName) {
-    //   setCheack("error");
-    // } else if (userName) {
-    //   setCheack("error");
-    // } else if (age) {
-    //   setCheack("error");
-    // } else if (country) {
-    //   setCheack("error");
-    // } else if (email) {
-    //   setCheack("error");
-    // } else if (password) {
-    //   setCheack("error");
-    // }
+  const addUsers = async () => {
     //show backend server
-    axios
+    await axios
       //send data from body object
-      .post("http://localhost:5000/users", body)
+      .post("http://localhost:5000/users", formData, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      })
       .then((result) => {
         //if add users
 
@@ -128,6 +125,7 @@ const Register = () => {
         placeholder="Password"
         required
       />
+      <UploadFile file={file} setFile={setFile} />
       <button onClick={addUsers}>Register</button>
       <h2>OR</h2>
       <button
