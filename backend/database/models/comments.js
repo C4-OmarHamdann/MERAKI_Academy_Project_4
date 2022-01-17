@@ -5,6 +5,7 @@ const commentSchema = new mongoose.Schema({
   fileName: { type: String },
   mimetype: { type: String },
   commenter: { type: mongoose.Schema.Types.String, ref: "User" },
+  avatar: { type: mongoose.Schema.Types.String, ref: "User" },
 });
 
 module.exports = mongoose.model("Comment", commentSchema);
