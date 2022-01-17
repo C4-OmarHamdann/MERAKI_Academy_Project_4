@@ -15,6 +15,8 @@ const Home = ({ token }) => {
 
   /////comment
   const [comment, setComment] = useState("");
+  const [updatedComment, setUpdatedComment] = useState(false);
+  const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
     allPostes();
@@ -108,23 +110,44 @@ const Home = ({ token }) => {
       });
   };
 
+  //////////update comment
+  const updateComment = (id) => {
+    axios
+      //send data from body object
+      .put(
+        `http://localhost:5000/postes/comments/${id}`,
+        { comment: newComment },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((result) => {
+        allPostes();
+      })
+      .catch((err) => {
+        //if error
+
+        console.log(err.response.data);
+      });
+  };
+
   /////show all postes
   const postesMap =
     postes &&
-    postes.map((el, i) => {
+    postes.map((el, index) => {
       return (
-        <div className="poste-card" key={i}>
+        <div className="poste-card red" key={index}>
           {el.avatar ? (
             <img
-              width={50}
-              height={50}
+              width={70}
+              height={70}
               src={`http://localhost:5000/uploads/${el?.avatar}`}
               alt="media"
             />
           ) : (
             <img
-              width={50}
-              height={50}
+              width={70}
+              height={70}
               src={`https://ui-avatars.com/api/?name=${el.name
                 ?.split(" ")
                 .join("+")}`}
@@ -147,7 +170,7 @@ const Home = ({ token }) => {
           {/* comment show */}
           {el.comments.map((el, i) => {
             return (
-              <div key={i} className="blue">
+              <div key={i} className="purple">
                 {el.avatar ? (
                   <img
                     width={30}
@@ -167,6 +190,41 @@ const Home = ({ token }) => {
                 <p>- {el.comment}</p>
                 {userName === el.commenter ? (
                   <>
+                    {updatedComment ? (
+                      <>
+                        <div className="form">
+                          <input
+                            type="text"
+                            onChange={(e) => {
+                              setNewComment(e.target.value);
+                            }}
+                            placeholder="New comment..."
+                            required
+                          />
+                        </div>
+                        <button
+                          className="delete-button"
+                          onClick={() => {
+                            setUpdatedComment(false);
+                          }}
+                        >
+                          close
+                        </button>
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                    <button
+                      className="update-button"
+                      id={el._id}
+                      onClick={() => {
+                        setUpdatedComment(!updatedComment);
+
+                        updateComment(el._id);
+                      }}
+                    >
+                      Update
+                    </button>
                     <button
                       className="delete-button"
                       id={el._id}

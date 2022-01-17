@@ -46,7 +46,7 @@ const updateCommentById = (req, res) => {
 
   commentsModel
     .findByIdAndUpdate(id, req.body, { new: true })
-    .populate("commenter")
+
     .then((result) => {
       res.status(202).json({
         success: true,
