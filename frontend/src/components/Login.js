@@ -35,7 +35,7 @@ const Login = ({ loggedin }) => {
       });
   };
   return (
-    <div className="blue form">
+    <div className="authentication">
       <h1>Login</h1>
       <label>Email</label>
       <input
@@ -53,11 +53,15 @@ const Login = ({ loggedin }) => {
         }}
         placeholder="Password"
       />
-      <button onClick={loginUser}>Login</button>
-      <h2>OR</h2>
-      <button style={{ backgroundColor: "blue" }} onClick={register}>
-        Register
+      <br />
+      <hr />
+      <p>
+        You don't have an account? <a onClick={register}>Register</a>
+      </p>
+      <button style={{ backgroundColor: "#28a745" }} onClick={loginUser}>
+        Login
       </button>
+
       {message ? <p className="error">{message}</p> : <></>}
     </div>
   );
