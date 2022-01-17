@@ -7,6 +7,7 @@ const getAllPostes = (req, res) => {
   const userName = req.token.userName;
   postesModel
     .find({})
+    .populate("comments")
     .then((postes) => {
       if (postes.length) {
         res.status(200).json({
@@ -25,6 +26,7 @@ const getAllPostes = (req, res) => {
       }
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).json({
         success: false,
         message: `Server Error`,
