@@ -10,15 +10,14 @@ const createNewComment = (req, res) => {
     fileName: req?.file?.filename,
     mimetype: req?.file?.mimetype,
     commenter: req.token.userName,
+    avatar: req.token?.avatar,
   });
   newComment
     .save()
     .then((result) => {
-      console.log(result);
       postesModel
         .updateOne({ _id: postId }, { $push: { comments: result._id } })
         .then(() => {
-          console.log("in update");
           res.status(201).json({
             success: true,
             message: `The new comment added`,
@@ -47,6 +46,7 @@ const updateCommentById = (req, res) => {
 
   commentsModel
     .findByIdAndUpdate(id, req.body, { new: true })
+    .populate("commenter")
     .then((result) => {
       res.status(202).json({
         success: true,
