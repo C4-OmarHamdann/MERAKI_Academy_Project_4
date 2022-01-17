@@ -8,10 +8,14 @@ import Search from "./Search";
 const Home = ({ token }) => {
   const [postes, setPostes] = useState([]);
   const [userName, setUserName] = useState("");
-  //update
 
+  //update
   const [newPost, setNewPost] = useState("");
   const [updated, setUpdated] = useState(false);
+
+  /////comment
+  const [comment, setComment] = useState("");
+
   useEffect(() => {
     allPostes();
   }, []);
@@ -68,6 +72,42 @@ const Home = ({ token }) => {
       });
   };
 
+  /////add comment
+  const addComment = (id) => {
+    axios
+      //send data from body object
+      .post(
+        `http://localhost:5000/postes/${id}/comments`,
+        { comment },
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then((result) => {
+        setComment("");
+        allPostes();
+      })
+      .catch((err) => {
+        //if error
+        console.log(err.response.data);
+      });
+  };
+
+  //////////delete comment
+  const deleteComment = (id) => {
+    axios
+      //send data from body object
+      .delete(`http://localhost:5000/postes/comments/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((result) => {
+        allPostes();
+      })
+      .catch((err) => {
+        //if error
+
+        console.log(err.response.data);
+      });
+  };
+
   /////show all postes
   const postesMap =
     postes &&
@@ -94,6 +134,7 @@ const Home = ({ token }) => {
           <h2>{el.name || el.userName}</h2>
           <h5>{"@" + el.userName}</h5>
           <h4>{el?.poste}</h4>
+
           {el.fileName && (
             <img
               width={500}
@@ -103,6 +144,54 @@ const Home = ({ token }) => {
             />
           )}
 
+          {/* comment show */}
+          {el.comments.map((el, i) => {
+            return (
+              <div key={i} className="blue">
+                {el.avatar ? (
+                  <img
+                    width={30}
+                    height={30}
+                    src={`http://localhost:5000/uploads/${el?.avatar}`}
+                    alt="media"
+                  />
+                ) : (
+                  <img
+                    width={30}
+                    height={30}
+                    src={`https://ui-avatars.com/api/?name=${el.commenter}`}
+                    alt="media"
+                  />
+                )}
+                <h5>{el.commenter}</h5>
+                <p>- {el.comment}</p>
+                {userName === el.commenter ? (
+                  <>
+                    <button
+                      className="delete-button"
+                      id={el._id}
+                      onClick={() => deleteComment(el._id)}
+                    >
+                      Delete
+                    </button>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </div>
+            );
+          })}
+          <div className="form">
+            <input
+              onChange={(e) => {
+                setComment(e.target.value);
+              }}
+              type="text"
+              value={comment}
+              placeholder="Comment..."
+              required
+            />
+          </div>
           {userName === el.userName ? (
             <>
               {updated ? (
@@ -148,6 +237,9 @@ const Home = ({ token }) => {
           ) : (
             <></>
           )}
+          <button className="add-button" onClick={() => addComment(el._id)}>
+            Add Comment
+          </button>
           <hr />
         </div>
       );
