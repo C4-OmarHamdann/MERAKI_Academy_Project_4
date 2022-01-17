@@ -158,3 +158,61 @@ h1 {
   color: red;
   font-weight: bold;
 }
+.authentication {
+  background-color: #fff;
+  color: #343a40;
+  margin: auto;
+  width: 40%;
+  padding: 2rem;
+  border-radius: 15px;
+}
+.authentication h2 {
+  text-align: center;
+}
+.authentication form {
+  padding: 1rem;
+}
+
+.authentication label {
+  display: block;
+  width: 100%;
+  padding: 1rem 0;
+}
+.authentication input {
+  display: block;
+  width: 100%;
+  padding: 0.6rem;
+}
+.authentication img {
+  width: 100%;
+  border-radius: 15px;
+}
+.authentication p {
+  text-align: center;
+}
+.authentication a {
+  cursor: pointer;
+  color: blue;
+}
+.authentication button {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  padding: 0.8rem 3rem;
+  font-weight: bold;
+  background-color: #17a2b8;
+  font-size: 15px;
+}
+.add-new-tweet {
+  background-color: #161b22;
+  width: 100%;
+  border-radius: 15px;
+  padding: 2rem;
+}
+.add-new-tweet textarea {
+  width: 100%;
+  background-color: #373e47;
+  border-radius: 15px;
+  padding: 1.5rem;
+}

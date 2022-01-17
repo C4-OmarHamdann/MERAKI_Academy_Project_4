@@ -58,99 +58,104 @@ const Register = () => {
       });
   };
   return (
-    <div className="blue form">
+    <div className="authentication">
       <h2>Register</h2>
       {/* save value */}
+      <form>
+        <label>First Name</label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setFirstName(e.target.value);
+          }}
+          placeholder="First Name"
+          required
+        />
+        <label>Last Name</label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setLastName(e.target.value);
+          }}
+          placeholder="Last Name"
+          required
+        />
+        <label>User Name</label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setUserName(e.target.value);
+          }}
+          placeholder="User Name"
+          required
+        />
+        <label>Age</label>
+        <input
+          type="number"
+          onChange={(e) => {
+            setAge(e.target.value);
+          }}
+          placeholder="Age"
+          required
+        />
+        <label>Country</label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setCountry(e.target.value);
+          }}
+          placeholder="Country"
+          required
+        />
+        <label>Email</label>
+        <input
+          type="email"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+          placeholder="Email"
+          required
+        />
+        <label>Password</label>
+        <input
+          type="password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          placeholder="Password"
+          required
+        />
+        <label>Upload Profile Image</label>
+        <UploadFile file={file} setFile={setFile} />
+        <hr />
+        <p>
+          Already have an account?
+          <a
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Login
+          </a>
+        </p>
+        <button onClick={addUsers}>Register</button>
 
-      <label>First Name</label>
-      <input
-        type="text"
-        onChange={(e) => {
-          setFirstName(e.target.value);
-        }}
-        placeholder="First Name"
-        required
-      />
-      <label>Last Name</label>
-      <input
-        type="text"
-        onChange={(e) => {
-          setLastName(e.target.value);
-        }}
-        placeholder="Last Name"
-        required
-      />
-      <label>User Name</label>
-      <input
-        type="text"
-        onChange={(e) => {
-          setUserName(e.target.value);
-        }}
-        placeholder="User Name"
-        required
-      />
-      <label>Age</label>
-      <input
-        type="number"
-        onChange={(e) => {
-          setAge(e.target.value);
-        }}
-        placeholder="Age"
-        required
-      />
-      <label>Country</label>
-      <input
-        type="text"
-        onChange={(e) => {
-          setCountry(e.target.value);
-        }}
-        placeholder="Country"
-        required
-      />
-      <label>Email</label>
-      <input
-        type="email"
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-        placeholder="Email"
-        required
-      />
-      <label>Password</label>
-      <input
-        type="password"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-        placeholder="Password"
-        required
-      />
-      <UploadFile file={file} setFile={setFile} />
-      <button onClick={addUsers}>Register</button>
-      <h2>OR</h2>
-      <button
-        style={{ backgroundColor: "blue" }}
-        onClick={() => {
-          navigate("/login");
-        }}
-      >
-        Login
-      </button>
-      {/* //cheack if add user or not massge
+        {/* //cheack if add user or not massge
       //if done or undfinde  */}
-      {cheack === "done" ? (
-        <div className="done">The user has been created successfully</div>
-      ) : //if error or undfinde
-      cheack === "error" ? (
-        message ? (
-          <p className="error">{message}</p>
+        {cheack === "done" ? (
+          <div className="done">The user has been created successfully</div>
+        ) : //if error or undfinde
+        cheack === "error" ? (
+          message ? (
+            <p className="error">{message}</p>
+          ) : (
+            <></>
+          )
         ) : (
-          <></>
-        )
-      ) : (
-        //if undfinde => no change
-        <div />
-      )}
+          //if undfinde => no change
+          <div />
+        )}
+      </form>
     </div>
   );
 };
