@@ -8,7 +8,6 @@ const createNewUser = (req, res) => {
     firstName,
     lastName,
     userName,
-    age,
     country,
     email,
     password,
