@@ -2,7 +2,7 @@ import React from "react";
 
 const UploadFile = ({ file, setFile }) => {
   return (
-    <div>
+    <div className="tweet-apload">
       <input
         onChange={(event) => {
           setFile(event.target.files[0]);
@@ -10,7 +10,7 @@ const UploadFile = ({ file, setFile }) => {
         type="file"
       ></input>
       <br />
-      {file && <img height={300} src={URL.createObjectURL(file)} />}
+      {file && <img height={300} src={URL.createObjectURL(file)} alt="" />}
     </div>
   );
 };
