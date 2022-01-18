@@ -2,8 +2,10 @@ const commentsModel = require("../database/models/comments");
 const postesModel = require("../database/models/postes");
 
 // This function creates a new comment for a specific post
+
 const createNewComment = (req, res) => {
   const postId = req.params.poste_id;
+
   const { comment } = req.body;
   const newComment = new commentsModel({
     comment,
@@ -65,9 +67,18 @@ const updateCommentById = (req, res) => {
 // This function deletes a specific commenter by its id
 const deleteCommentById = (req, res) => {
   const id = req.params.id;
+
+  const _id = req.query.post;
+
   commentsModel
+
     .findByIdAndDelete(id)
     .then((result) => {
+      //delete comment in array
+      postesModel
+        .updateOne({ _id }, { $pull: { comments: { $in: id } } })
+        .then((postTest) => {})
+        .catch((err) => {});
       if (!result) {
         return res.status(404).json({
           success: false,
@@ -80,6 +91,7 @@ const deleteCommentById = (req, res) => {
       });
     })
     .catch((err) => {
+      console.log("error : " + err);
       res.status(500).json({
         success: false,
         message: `Server Error`,
