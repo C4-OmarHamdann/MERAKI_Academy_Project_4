@@ -7,9 +7,9 @@ import axios from "axios";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+
   const [userName, setUserName] = useState("");
-  const [age, setAge] = useState(0);
+
   const [country, setCountry] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,9 +20,9 @@ const Register = () => {
   //save data in form data
   const formData = new FormData();
   formData.append("firstName", firstName);
-  formData.append("lastName", lastName);
+
   formData.append("userName", userName);
-  formData.append("age", age);
+
   formData.append("country", country);
   formData.append("email", email);
   formData.append("password", password);
@@ -61,8 +61,8 @@ const Register = () => {
     <div className="authentication">
       <h2>Register</h2>
       {/* save value */}
-      <form>
-        <label>First Name</label>
+      <div>
+        <label>Name</label>
         <input
           type="text"
           onChange={(e) => {
@@ -71,15 +71,7 @@ const Register = () => {
           placeholder="First Name"
           required
         />
-        <label>Last Name</label>
-        <input
-          type="text"
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
-          placeholder="Last Name"
-          required
-        />
+
         <label>User Name</label>
         <input
           type="text"
@@ -89,15 +81,7 @@ const Register = () => {
           placeholder="User Name"
           required
         />
-        <label>Age</label>
-        <input
-          type="number"
-          onChange={(e) => {
-            setAge(e.target.value);
-          }}
-          placeholder="Age"
-          required
-        />
+
         <label>Country</label>
         <input
           type="text"
@@ -130,13 +114,7 @@ const Register = () => {
         <hr />
         <p>
           Already have an account?
-          <a
-            onClick={() => {
-              navigate("/login");
-            }}
-          >
-            Login
-          </a>
+          <a href={navigate("/login")}>Login</a>
         </p>
         <button onClick={addUsers}>Register</button>
 
@@ -155,7 +133,7 @@ const Register = () => {
           //if undfinde => no change
           <div />
         )}
-      </form>
+      </div>
     </div>
   );
 };
