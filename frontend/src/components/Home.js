@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
+import CommentPost from "./CommentPost";
 import CreateNewPost from "./CreateNewPost";
 import Search from "./Search";
 
@@ -15,12 +16,10 @@ const Home = ({ token }) => {
 
   /////comment
   const [comment, setComment] = useState("");
-  const [updatedComment, setUpdatedComment] = useState(false);
-  const [newComment, setNewComment] = useState("");
-
+  const [idPost, setIdPost] = useState("");
   useEffect(() => {
     allPostes();
-  }, []);
+  });
   ///// get all postes
   const allPostes = () => {
     axios
@@ -73,7 +72,6 @@ const Home = ({ token }) => {
         console.log(err.response.data);
       });
   };
-
   /////add comment
   const addComment = (id) => {
     axios
@@ -84,6 +82,7 @@ const Home = ({ token }) => {
         { headers: { Authorization: `Bearer ${token}` } }
       )
       .then((result) => {
+        setIdPost(id);
         setComment("");
         allPostes();
       })
@@ -93,218 +92,138 @@ const Home = ({ token }) => {
       });
   };
 
-  //////////delete comment
-  const deleteComment = (id) => {
-    axios
-      //send data from body object
-      .delete(`http://localhost:5000/postes/comments/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((result) => {
-        allPostes();
-      })
-      .catch((err) => {
-        //if error
-
-        console.log(err.response.data);
-      });
-  };
-
-  //////////update comment
-  const updateComment = (id) => {
-    axios
-      //send data from body object
-      .put(
-        `http://localhost:5000/postes/comments/${id}`,
-        { comment: newComment },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
-      .then((result) => {
-        allPostes();
-      })
-      .catch((err) => {
-        //if error
-
-        console.log(err.response.data);
-      });
-  };
-
   /////show all postes
   const postesMap =
     postes &&
     postes.map((el, index) => {
       return (
-        <div className="poste-card red" key={index}>
-          {el.avatar ? (
-            <img
-              width={70}
-              height={70}
-              src={`http://localhost:5000/uploads/${el?.avatar}`}
-              alt="media"
-            />
-          ) : (
-            <img
-              width={70}
-              height={70}
-              src={`https://ui-avatars.com/api/?name=${el.name
-                ?.split(" ")
-                .join("+")}`}
-              alt="media"
-            />
-          )}
-          <h2>{el.name || el.userName}</h2>
-          <h5>{"@" + el.userName}</h5>
-          <h4>{el?.poste}</h4>
+        <div className="post-section" key={index}>
+          <form>
+            {el.avatar ? (
+              <img
+                width={70}
+                height={70}
+                src={`http://localhost:5000/uploads/${el?.avatar}`}
+                alt="media"
+              />
+            ) : (
+              <img
+                width={70}
+                height={70}
+                src={`https://ui-avatars.com/api/?name=${el.name
+                  ?.split(" ")
+                  .join("+")}`}
+                alt="media"
+              />
+            )}
+            <h2>{el.name || el.userName}</h2>
+            <h5>{"@" + el.userName}</h5>
+            {userName === el.userName ? (
+              <>
+                <button
+                  type="button"
+                  className="update-button"
+                  id={el._id}
+                  onClick={() => updatePost(el._id)}
+                >
+                  Update
+                </button>
+                <button
+                  type="button"
+                  className="delete-button"
+                  id={el._id}
+                  onClick={deletePoste}
+                >
+                  Delete
+                </button>
+              </>
+            ) : (
+              <></>
+            )}
+            <h4>{el?.poste}</h4>
+            <hr />
+            {el.fileName && (
+              <img
+                className="image-post"
+                height={300}
+                src={`http://localhost:5000/uploads/${el?.fileName}`}
+                alt="media"
+              />
+            )}
 
-          {el.fileName && (
-            <img
-              width={500}
-              height={300}
-              src={`http://localhost:5000/uploads/${el?.fileName}`}
-              alt="media"
-            />
-          )}
-
-          {/* comment show */}
-          {el.comments.map((el, i) => {
-            return (
-              <div key={i} className="purple">
-                {el.avatar ? (
-                  <img
-                    width={30}
-                    height={30}
-                    src={`http://localhost:5000/uploads/${el?.avatar}`}
-                    alt="media"
-                  />
-                ) : (
-                  <img
-                    width={30}
-                    height={30}
-                    src={`https://ui-avatars.com/api/?name=${el.commenter}`}
-                    alt="media"
-                  />
-                )}
-                <h5>{el.commenter}</h5>
-                <p>- {el.comment}</p>
-                {userName === el.commenter ? (
+            {/* comment show */}
+            {el.comments.map((el, i) => {
+              return (
+                <CommentPost
+                  userName={userName}
+                  key={i}
+                  el={el}
+                  allPostes={allPostes}
+                  token={token}
+                  idPost={idPost}
+                />
+              );
+            })}
+            <div className="form">
+              <input
+                onChange={(e) => {
+                  setComment(e.target.value);
+                }}
+                className="comment-input"
+                type="text"
+                value={comment}
+                placeholder="Comment..."
+                required
+              />
+            </div>
+            {userName === el.userName ? (
+              <>
+                {updated ? (
                   <>
-                    {updatedComment ? (
-                      <>
-                        <div className="form">
-                          <input
-                            type="text"
-                            onChange={(e) => {
-                              setNewComment(e.target.value);
-                            }}
-                            placeholder="New comment..."
-                            required
-                          />
-                        </div>
-                        <button
-                          className="delete-button"
-                          onClick={() => {
-                            setUpdatedComment(false);
-                          }}
-                        >
-                          close
-                        </button>
-                      </>
-                    ) : (
-                      <></>
-                    )}
+                    <div className="form">
+                      <textarea
+                        onChange={(e) => {
+                          setNewPost(e.target.value);
+                        }}
+                        cols="30"
+                        rows="10"
+                        placeholder="New post..."
+                        required
+                      ></textarea>
+                    </div>
                     <button
-                      className="update-button"
-                      id={el._id}
+                      type="button"
+                      className="delete-button"
                       onClick={() => {
-                        setUpdatedComment(!updatedComment);
-
-                        updateComment(el._id);
+                        setUpdated(false);
                       }}
                     >
-                      Update
-                    </button>
-                    <button
-                      className="delete-button"
-                      id={el._id}
-                      onClick={() => deleteComment(el._id)}
-                    >
-                      Delete
+                      close
                     </button>
                   </>
                 ) : (
                   <></>
                 )}
-              </div>
-            );
-          })}
-          <div className="form">
-            <input
-              onChange={(e) => {
-                setComment(e.target.value);
-              }}
-              type="text"
-              value={comment}
-              placeholder="Comment..."
-              required
-            />
-          </div>
-          {userName === el.userName ? (
-            <>
-              {updated ? (
-                <>
-                  <div className="form">
-                    <textarea
-                      onChange={(e) => {
-                        setNewPost(e.target.value);
-                      }}
-                      cols="30"
-                      rows="10"
-                      placeholder="New post..."
-                      required
-                    ></textarea>
-                  </div>
-                  <button
-                    className="delete-button"
-                    onClick={() => {
-                      setUpdated(false);
-                    }}
-                  >
-                    close
-                  </button>
-                </>
-              ) : (
-                <></>
-              )}
+              </>
+            ) : (
+              <></>
+            )}
+            <div className="post-buttons">
               <button
-                className="update-button"
-                id={el._id}
-                onClick={() => updatePost(el._id)}
+                type="button"
+                className="add-button"
+                onClick={() => addComment(el._id)}
               >
-                Update
+                Add Comment
               </button>
-              <button
-                className="delete-button"
-                id={el._id}
-                onClick={deletePoste}
-              >
-                Delete
-              </button>
-            </>
-          ) : (
-            <></>
-          )}
-          <button className="add-button" onClick={() => addComment(el._id)}>
-            Add Comment
-          </button>
-          <hr />
+            </div>
+          </form>
         </div>
       );
     });
   ///////////jsx code
   return (
-    <div className="blue">
+    <div className="home-page">
       <CreateNewPost token={token} allPost={allPostes} />
 
       <Search setPost={setPostes} allPost={allPostes} />
