@@ -2,14 +2,18 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
+import AsideLeft from "./AsideLeft";
+import Aside from "./AsideLeft";
+import AsideRight from "./AsideRight";
 import CommentPost from "./CommentPost";
 import CreateNewPost from "./CreateNewPost";
 import Search from "./Search";
+import Sort from "./Sort";
 
 const Home = ({ token }) => {
   const [postes, setPostes] = useState([]);
   const [userName, setUserName] = useState("");
-
+  const [avatarUser, setAvatarUser] = useState("");
   //update
   const [newPost, setNewPost] = useState("");
   const [updated, setUpdated] = useState(false);
@@ -19,7 +23,7 @@ const Home = ({ token }) => {
   const [idPost, setIdPost] = useState("");
   useEffect(() => {
     allPostes();
-  });
+  }, []);
   ///// get all postes
   const allPostes = () => {
     axios
@@ -30,6 +34,7 @@ const Home = ({ token }) => {
       .then((result) => {
         setPostes(result.data.postes);
         setUserName(result.data.userName);
+        setAvatarUser(result.data.avatar);
       })
       .catch((err) => {
         //if error
@@ -93,6 +98,7 @@ const Home = ({ token }) => {
   };
 
   /////show all postes
+
   const postesMap =
     postes &&
     postes.map((el, index) => {
@@ -198,7 +204,17 @@ const Home = ({ token }) => {
                         setUpdated(false);
                       }}
                     >
-                      close
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="red"
+                        class="bi bi-x-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                      </svg>
                     </button>
                   </>
                 ) : (
@@ -223,24 +239,46 @@ const Home = ({ token }) => {
     });
   ///////////jsx code
   return (
-    <div className="home-page">
-      <CreateNewPost token={token} allPost={allPostes} />
+    <>
+      <div className="grid-screen">
+        <AsideLeft userName={userName} avatarUser={avatarUser} />
+        <div className="home-page">
+          <div class="aside-left-profile">
+            <h2>Home</h2>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+              fill="#fff"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="currentColor"
+              class="StyledIconBase-ea9ulj-0 bWRyML sc-bBXrwG iRQiAu"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16 2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+              ></path>
+            </svg>
+          </div>
 
-      <Search setPost={setPostes} allPost={allPostes} />
+          <CreateNewPost
+            token={token}
+            userName={userName}
+            avatarUser={avatarUser}
+            allPost={allPostes}
+          />
 
-      {postesMap?.length ? <>{postesMap}</> : <h2>NO Postes</h2>}
-      <Link to="/login">
-        {" "}
-        <button
-          onClick={() => {
-            localStorage.removeItem("userToken");
-          }}
-          className="delete-button"
-        >
-          logout
-        </button>
-      </Link>
-    </div>
+          <Sort setPostes={setPostes} postes={postes} />
+          {postesMap?.length ? <>{postesMap}</> : <h2>NO Postes</h2>}
+          <Link to="/login"> </Link>
+        </div>
+        <AsideRight setPostes={setPostes} allPosts={allPostes} />
+      </div>
+    </>
   );
 };
 export default Home;
