@@ -7,7 +7,7 @@ const Search = ({ setPost, allPost }) => {
   const [cheack, setCheack] = useState("");
 
   return (
-    <div className="blue form">
+    <div className="search-field">
       <input
         onChange={(e) => {
           setSearch(e.target.value);
