@@ -14,6 +14,8 @@ const Home = ({ token }) => {
   const [postes, setPostes] = useState([]);
   const [userName, setUserName] = useState("");
   const [avatarUser, setAvatarUser] = useState("");
+  const [limit, setLimit] = useState(2);
+
   //update
   const [newPost, setNewPost] = useState("");
   const [updated, setUpdated] = useState(false);
@@ -28,7 +30,7 @@ const Home = ({ token }) => {
   const allPostes = () => {
     axios
       //send data from body object
-      .get(`http://localhost:5000/postes`, {
+      .get(`http://localhost:5000/postes?limit=${limit}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((result) => {
@@ -265,6 +267,15 @@ const Home = ({ token }) => {
           <Sort setPostes={setPostes} postes={postes} />
           {postesMap?.length ? <>{postesMap}</> : <h2>NO Postes</h2>}
           <Link to="/login"> </Link>
+          <button
+            onClick={() => {
+              setLimit(limit + 2);
+
+              allPostes();
+            }}
+          >
+            Show More
+          </button>
         </div>
         <AsideRight setPostes={setPostes} allPosts={allPostes} />
       </div>

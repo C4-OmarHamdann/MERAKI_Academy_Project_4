@@ -6,9 +6,14 @@ const getAllPostes = (req, res) => {
   const userId = req.token.userId;
   const userName = req.token.userName;
   const avatar = req.token.avatar;
+  const limit = req.query.limit;
+
   postesModel
     .find({})
+    .limit(limit)
+
     .populate("comments")
+
     .then((postes) => {
       if (postes.length) {
         res.status(200).json({
