@@ -68,7 +68,7 @@ const Register = () => {
           onChange={(e) => {
             setFirstName(e.target.value);
           }}
-          placeholder="First Name"
+          placeholder="Name"
           required
         />
 
@@ -114,7 +114,7 @@ const Register = () => {
         <hr />
         <p>
           Already have an account?
-          <a href={navigate("/login")}>Login</a>
+          <a href="/login">Login</a>
         </p>
         <button onClick={addUsers}>Register</button>
 
