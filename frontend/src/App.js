@@ -10,11 +10,9 @@ const App = () => {
   const [isLoggedIn, setisLoggedIn] = useState(false);
   return (
     <div className="App">
-      <h1>Welcome To App</h1>
-
       <Routes>
         {" "}
-        <Route path="/" element={<Register />} />
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route
           path="/login"
