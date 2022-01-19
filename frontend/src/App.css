@@ -1,11 +1,18 @@
+* {
+  box-sizing: border-box;
+}
 body {
   background-color: rgb(37, 36, 36);
   color: antiquewhite;
+  margin: 0;
   font-family: sans-serif;
 }
 .form h2,
 h1 {
   text-align: center;
+}
+.App {
+  margin: 0 5em;
 }
 .form h5 {
   padding: 0;
@@ -137,21 +144,21 @@ h1 {
   color: #fff;
   font-size: 14px;
   padding: 0.5rem 0.5rem;
-  margin: 1.5rem;
   border-radius: 15px;
-  background-color: blue;
+  background-color: transparent;
   cursor: pointer;
   border: none;
+  float: right;
 }
 .delete-button {
   color: #fff;
   font-size: 14px;
   padding: 0.5rem 0.5rem;
-  margin: 0.7rem;
   border-radius: 15px;
-  background-color: red;
+  background-color: transparent;
   cursor: pointer;
   border: none;
+  float: right;
 }
 .not-found {
   margin-top: 10rem;
@@ -204,12 +211,24 @@ h1 {
   background-color: #17a2b8;
   font-size: 15px;
 }
-
+.add-new-tweet {
+  position: relative;
+}
 .add-new-tweet textarea {
-  width: 88%;
-  background-color: #373e47;
+  display: block;
+  width: 100%;
+  height: 4rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  background-clip: padding-box;
+  border: none;
+  background-color: transparent;
   border-radius: 15px;
-  padding: 1.5rem;
+  outline: none;
+  padding-top: 1rem;
 }
 .add-new-tweet .new-tweet-options {
   padding-right: 1rem;
@@ -221,9 +240,6 @@ h1 {
   width: 3rem;
   fill: rgba(29, 161, 242, 1);
   padding: 1rem;
-}
-
-.add-new-tweet .add-icons svg {
   padding-left: 0;
 }
 form {
@@ -238,13 +254,17 @@ form button {
 button {
   cursor: pointer;
 }
-.add-new-tweet .tweet-apload {
+a p {
+  cursor: pointer;
+}
+.add-new-tweet .tweet-upload {
   position: absolute;
-  bottom: -2px;
+  bottom: 46x;
   height: 50px;
   width: 48px;
   overflow: hidden;
   opacity: 0;
+  cursor: pointer;
 }
 .tweet-btn button {
   background-color: rgba(29, 161, 242, 1);
@@ -254,10 +274,7 @@ button {
   border: none;
   padding: 0.8rem 3rem;
 }
-.home-page {
-  margin: auto;
-  width: 40%;
-}
+
 .post-section img {
   border-radius: 50%;
 }
@@ -311,4 +328,137 @@ button {
 .image-post {
   width: 100%;
   border-radius: 15px !important;
+}
+.grid-screen {
+  display: flex;
+
+  justify-content: center;
+}
+.aside-left {
+  min-width: 270px;
+  max-width: 270px;
+  height: 100vh;
+  display: flex;
+
+  justify-content: center;
+  user-select: none;
+}
+.aside-left-items {
+  width: 270px;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+}
+.aside-left-item {
+  width: max-content;
+  padding: 0.8rem;
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+}
+.aside-left-item p {
+  margin: 0;
+  padding-left: 0.5rem;
+}
+.post-from-me {
+  display: flex;
+}
+.post-from-me img {
+  border-radius: 50%;
+}
+.aside-right-items {
+  background: #161b22;
+  border-radius: 16px;
+  padding: 1rem;
+  min-width: 350px;
+  max-width: 350px;
+  padding: 1rem;
+  margin-left: 10px;
+  height: 100%;
+}
+.aside-right-items h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.aside-right-item {
+  width: 100%;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.aside-right-item p {
+  font-size: 13px;
+  color: #ccc;
+}
+.aside-right-item h4 {
+  font-size: 15px;
+  margin: 5px 0px;
+}
+.aside-right-item p span {
+  color: rgb(29, 155, 240);
+}
+.home-page {
+  min-width: 600px;
+  max-width: 600px;
+  border-left: 1px solid rgba(51, 51, 51, 0.067);
+  border-right: 1px solid rgba(51, 51, 51, 0.067);
+}
+.aside-right-items hr {
+  height: 1px;
+  background-color: #ccc;
+  border: none;
+}
+.search-field {
+  width: 100%;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0px;
+  background: #161b22;
+}
+.search-field input {
+  width: 100%;
+  background: #373e47;
+  border: none;
+  border-radius: 34px;
+  padding: 0.8rem 1rem;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+.userImg {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  border-radius: 50%;
+}
+.userImg img {
+  border-radius: 50%;
+  padding: 1rem;
+}
+.aside-left-profile {
+  position: sticky;
+  top: 0px;
+  background: #161b22;
+  padding: 1rem;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.067);
+  z-index: 100;
+}
+.aside-left-profile {
+  margin: 0;
+}
+.close-button {
+  background-color: transparent;
+  border: none;
 }
