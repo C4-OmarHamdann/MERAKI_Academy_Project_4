@@ -1,8 +1,7 @@
 const usersModel = require("../database/models/users");
 
 const createNewUser = (req, res) => {
-  const { firstName, lastName, userName, age, country, email, password } =
-    req.body;
+  const { firstName, lastName, userName, country, email, password } = req.body;
 
   const user = new usersModel({
     firstName,

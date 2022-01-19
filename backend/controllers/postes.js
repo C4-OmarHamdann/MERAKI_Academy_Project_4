@@ -5,6 +5,7 @@ const postesModel = require("../database/models/postes");
 const getAllPostes = (req, res) => {
   const userId = req.token.userId;
   const userName = req.token.userName;
+  const avatar = req.token.avatar;
   postesModel
     .find({})
     .populate("comments")
@@ -15,6 +16,7 @@ const getAllPostes = (req, res) => {
           message: `All the postes`,
           userId: userId,
           userName: userName,
+          avatar: avatar,
           postes: postes,
           comments: postes.comments,
         });
@@ -41,7 +43,6 @@ const createNewPostes = (req, res) => {
   const newPostes = new postesModel({
     poste: poste,
     fileName: req?.file?.filename,
-
     userName: req.token.userName,
     name: req.token.name,
     avatar: req.token.avatar,
