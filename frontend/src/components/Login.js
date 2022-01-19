@@ -58,9 +58,7 @@ const Login = ({ loggedin }) => {
       <p>
         You don't have an account? <a onClick={register}>Register</a>
       </p>
-      <button style={{ backgroundColor: "#28a745" }} onClick={loginUser}>
-        Login
-      </button>
+      <button onClick={loginUser}>Login</button>
 
       {message ? <p className="error">{message}</p> : <></>}
     </div>
