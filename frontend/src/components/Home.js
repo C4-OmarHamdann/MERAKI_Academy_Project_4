@@ -3,18 +3,17 @@ import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import AsideLeft from "./AsideLeft";
-import Aside from "./AsideLeft";
+
 import AsideRight from "./AsideRight";
 import CommentPost from "./CommentPost";
 import CreateNewPost from "./CreateNewPost";
-import Search from "./Search";
+
 import Sort from "./Sort";
 
 const Home = ({ token }) => {
   const [postes, setPostes] = useState([]);
   const [userName, setUserName] = useState("");
   const [avatarUser, setAvatarUser] = useState("");
-  const [limit, setLimit] = useState(2);
 
   //update
   const [newPost, setNewPost] = useState("");
@@ -23,26 +22,58 @@ const Home = ({ token }) => {
   /////comment
   const [comment, setComment] = useState("");
   const [idPost, setIdPost] = useState("");
-  useEffect(() => {
-    allPostes();
-  }, []);
-  ///// get all postes
-  const allPostes = () => {
-    axios
+
+  //showMore
+  const [limit, setLimit] = useState(2);
+
+  //sort
+  const [sort, setSort] = useState(false);
+
+  //newsApi
+  const [news, setNews] = useState([]);
+  const newsApi = async () => {
+    await axios
       //send data from body object
-      .get(`http://localhost:5000/postes?limit=${limit}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      .get(
+        `https://newsapi.org/v2/everything?q=apple&from=2022-01-19&to=2022-01-19&sortBy=popularity&apiKey=9c37824887c144c0abc55a73ea84493c`
+      )
+
       .then((result) => {
-        setPostes(result.data.postes);
-        setUserName(result.data.userName);
-        setAvatarUser(result.data.avatar);
+        setNews(result.data.articles);
       })
       .catch((err) => {
         //if error
 
         console.log(err.response.data);
       });
+  };
+
+  ///useEffect
+
+  useEffect(() => {
+    allPostes();
+    newsApi();
+  }, []);
+  ///// get all postes
+  const allPostes = () => {
+    {
+      //postes.length? setPostes(postes):
+      axios
+        //send data from body object
+        .get(`http://localhost:5000/postes?limit=${limit}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((result) => {
+          setPostes(result.data.postes);
+          setUserName(result.data.userName);
+          setAvatarUser(result.data.avatar);
+        })
+        .catch((err) => {
+          //if error
+
+          console.log(err.response.data);
+        });
+    }
   };
 
   /////delete articles
@@ -235,7 +266,7 @@ const Home = ({ token }) => {
       <div className="grid-screen">
         <AsideLeft userName={userName} avatarUser={avatarUser} />
         <div className="home-page">
-          <div class="aside-left-profile">
+          <div className="aside-left-profile">
             <h2>Home</h2>
             <svg
               width="20"
@@ -246,12 +277,12 @@ const Home = ({ token }) => {
               fill="#fff"
               xmlns="http://www.w3.org/2000/svg"
               stroke="currentColor"
-              class="StyledIconBase-ea9ulj-0 bWRyML sc-bBXrwG iRQiAu"
+              className="StyledIconBase-ea9ulj-0 bWRyML sc-bBXrwG iRQiAu"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16 2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
               ></path>
             </svg>
@@ -277,7 +308,7 @@ const Home = ({ token }) => {
             Show More
           </button>
         </div>
-        <AsideRight setPostes={setPostes} allPosts={allPostes} />
+        <AsideRight news={news} setPostes={setPostes} allPosts={allPostes} />
       </div>
     </>
   );
