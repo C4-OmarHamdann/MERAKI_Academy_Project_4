@@ -334,7 +334,7 @@ a p {
 
   justify-content: center;
 }
-.aside-left {
+.asideLeft {
   min-width: 270px;
   max-width: 270px;
   height: 100vh;
@@ -343,14 +343,14 @@ a p {
   justify-content: center;
   user-select: none;
 }
-.aside-left-items {
+.asideLeftItems {
   width: 270px;
   height: 100vh;
   position: fixed;
   display: flex;
   flex-direction: column;
 }
-.aside-left-item {
+.asideLeftItem {
   width: max-content;
   padding: 0.8rem;
   display: flex;
@@ -362,7 +362,7 @@ a p {
   color: #fff;
   text-decoration: none;
 }
-.aside-left-item p {
+.asideLeftItem p {
   margin: 0;
   padding-left: 0.5rem;
 }
@@ -446,11 +446,9 @@ a p {
   position: sticky;
   top: 0px;
   background: #161b22;
-  padding: 1rem;
+  padding: 0 1rem;
   display: flex;
-  -webkit-box-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
   align-items: center;
   border-bottom: 1px solid rgba(51, 51, 51, 0.067);
   z-index: 100;
@@ -461,4 +459,9 @@ a p {
 .close-button {
   background-color: transparent;
   border: none;
+}
+
+.showMore {
+  cursor: pointer;
+  color: #338fff !important;
 }
