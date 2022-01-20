@@ -10,7 +10,7 @@ const Sort = ({ postes, setPostes }) => {
           postes.sort((a, b) => {
             return new Date(b.date) - new Date(a.date);
           });
-
+          console.log(postes);
           setPostes(postes);
         }}
       >
