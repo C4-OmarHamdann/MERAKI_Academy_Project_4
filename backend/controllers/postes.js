@@ -106,6 +106,7 @@ const getPostesByUser = (req, res) => {
   let userName = req.query.userName;
   postesModel
     .find({ userName: userName })
+    .populate("comments")
     .then((postes) => {
       if (!postes.length) {
         return res.status(404).json({
