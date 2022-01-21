@@ -8,8 +8,6 @@ import AsideRight from "./AsideRight";
 import CommentPost from "./CommentPost";
 import CreateNewPost from "./CreateNewPost";
 
-import Sort from "./Sort";
-
 const Home = ({ token }) => {
   const [postes, setPostes] = useState([]);
   const [userName, setUserName] = useState("");
@@ -27,7 +25,7 @@ const Home = ({ token }) => {
   const [limit, setLimit] = useState(2);
 
   //sort
-  const [sort, setSort] = useState(false);
+  const [sort, setSort] = useState(true);
 
   //newsApi
   const [news, setNews] = useState([]);
@@ -135,6 +133,7 @@ const Home = ({ token }) => {
   const postesMap =
     postes &&
     postes.map((el, index) => {
+      console.log(postes);
       return (
         <div className="post-section" key={index}>
           <form>
@@ -215,7 +214,7 @@ const Home = ({ token }) => {
                 required
               />
             </div>
-            {userName === el.userName ? (
+            {userName === el.commenter ? (
               <>
                 {updated ? (
                   <>
@@ -277,6 +276,11 @@ const Home = ({ token }) => {
               fill="#fff"
               xmlns="http://www.w3.org/2000/svg"
               stroke="currentColor"
+              onClick={() => {
+                postesMap.reverse();
+
+                setSort(!sort);
+              }}
               className="StyledIconBase-ea9ulj-0 bWRyML sc-bBXrwG iRQiAu"
             >
               <path
@@ -295,13 +299,16 @@ const Home = ({ token }) => {
             allPost={allPostes}
           />
 
-          <Sort setPostes={setPostes} postes={postes} />
-          {postesMap?.length ? <>{postesMap}</> : <h2>NO Postes</h2>}
+          {postesMap?.length ? (
+            <>{sort ? postesMap : postesMap.reverse()}</>
+          ) : (
+            <h2>NO Postes</h2>
+          )}
           <Link to="/login"> </Link>
           <button
+            className="showMoreButton"
             onClick={() => {
               setLimit(limit + 2);
-
               allPostes();
             }}
           >
