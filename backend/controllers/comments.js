@@ -73,6 +73,7 @@ const deleteCommentById = (req, res) => {
   commentsModel
 
     .findByIdAndDelete(id)
+
     .then((result) => {
       //delete comment in array
       postesModel

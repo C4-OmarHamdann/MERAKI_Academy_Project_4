@@ -456,6 +456,9 @@ a p {
 .aside-left-profile {
   margin: 0;
 }
+.aside-left-profile svg {
+  cursor: pointer;
+}
 .close-button {
   background-color: transparent;
   border: none;
@@ -464,4 +467,15 @@ a p {
 .showMore {
   cursor: pointer;
   color: #338fff !important;
+}
+.showMoreButton {
+  background-color: #338fff;
+  width: 100%;
+  display: block;
+  border-radius: 15px;
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 3rem;
+  margin: 1rem 0;
 }
