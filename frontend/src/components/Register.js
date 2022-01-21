@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import UploadFile from "./UploadFile";
 
 import axios from "axios";
@@ -10,7 +10,6 @@ const Register = () => {
 
   const [userName, setUserName] = useState("");
 
-  const [country, setCountry] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   //upload
@@ -23,14 +22,11 @@ const Register = () => {
 
   formData.append("userName", userName);
 
-  formData.append("country", country);
   formData.append("email", email);
   formData.append("password", password);
   formData.append("media", file);
 
   //************************************* */
-
-  const navigate = useNavigate();
 
   //cheack done or not
   const [cheack, setCheack] = useState("");
@@ -82,15 +78,6 @@ const Register = () => {
           required
         />
 
-        <label>Country</label>
-        <input
-          type="text"
-          onChange={(e) => {
-            setCountry(e.target.value);
-          }}
-          placeholder="Country"
-          required
-        />
         <label>Email</label>
         <input
           type="email"
