@@ -13,7 +13,7 @@ const Search = ({ setPost, allPost }) => {
           setSearch(e.target.value);
         }}
         onKeyPress={(event) => {
-          if (event.key == "Enter") {
+          if (event.key === "Enter") {
             if (!search) {
               setCheack("");
               allPost();
@@ -22,6 +22,7 @@ const Search = ({ setPost, allPost }) => {
                 //send data from body object
                 .get(`http://localhost:5000/postes/search_1?userName=${search}`)
                 .then((result) => {
+                  console.log(result.data);
                   setPost(result.data.postes);
                   setCheack("done");
                 })
@@ -35,11 +36,11 @@ const Search = ({ setPost, allPost }) => {
           }
         }}
         type="search"
-        placeholder="userName..."
+        placeholder="User Name..."
       />
       {
         //if error or undfinde
-        cheack == "error" ? (
+        cheack === "error" ? (
           <div className="error">no such user!!</div>
         ) : (
           //if undfinde => no change
