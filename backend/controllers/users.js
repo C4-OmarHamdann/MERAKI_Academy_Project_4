@@ -24,7 +24,6 @@ const createNewUser = (req, res) => {
     })
     .catch((err) => {
       if (err.keyPattern) {
-        console.log(err.keyPattern);
         if (err.keyPattern?.email) {
           return res.status(409).json({
             success: false,

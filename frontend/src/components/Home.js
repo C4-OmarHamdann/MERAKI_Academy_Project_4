@@ -133,7 +133,6 @@ const Home = ({ token }) => {
   const postesMap =
     postes &&
     postes.map((el, index) => {
-      console.log(postes);
       return (
         <div className="post-section" key={index}>
           <form>

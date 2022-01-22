@@ -27,7 +27,6 @@ const createNewComment = (req, res) => {
           });
         })
         .catch((err) => {
-          console.log(err);
           res.status(500).json({
             success: false,
             message: `Server Error (post)`,
@@ -35,7 +34,6 @@ const createNewComment = (req, res) => {
         });
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json({
         success: false,
         message: `Server Error (comment)`,
@@ -92,7 +90,6 @@ const deleteCommentById = (req, res) => {
       });
     })
     .catch((err) => {
-      console.log("error : " + err);
       res.status(500).json({
         success: false,
         message: `Server Error`,
