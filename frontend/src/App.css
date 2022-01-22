@@ -11,30 +11,11 @@ body {
 h1 {
   text-align: center;
 }
-.App {
+/* .App {
   margin: 0 5em;
-}
+} */
 .form h5 {
   padding: 0;
-}
-.red {
-  border: 3px dashed tomato;
-  margin-top: 1rem;
-  padding: 1rem;
-}
-.orange {
-  border: 3px dashed orange;
-  margin-top: 1rem;
-  padding: 1rem;
-}
-.purple {
-  border: 3px dashed purple;
-  margin-top: 1rem;
-}
-.blue {
-  border: 3px dashed blue;
-  margin-top: 1rem;
-  padding: 1rem;
 }
 .form {
   display: flex;
@@ -86,35 +67,6 @@ h1 {
   color: #fff;
   margin-top: 0;
 }
-.purple.form label,
-.blue.form label {
-  text-align: left;
-  padding-left: 1rem;
-}
-.purple.form {
-  padding: 1rem;
-}
-.purple.form button,
-.red.form button,
-.orange.form button,
-.blue.form button {
-  background-color: green;
-  padding: 0.8rem 3rem;
-  border-radius: 15px;
-  border: none;
-  width: 30%;
-  margin: auto;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.purple.form button:hover,
-.red.form button:hover,
-.orange.form button:hover,
-.blue.form button:hover {
-  background-color: darkgreen;
-}
 .article-card {
   background-color: #ccc;
   color: #343a40;
@@ -165,51 +117,92 @@ h1 {
   color: red;
   font-weight: bold;
 }
+
 .authentication {
-  background-color: #fff;
-  color: #343a40;
-  margin: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+.authentication-bg {
+  width: 55vw;
+  position: relative;
+}
+.authentication-bg img.bg {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+.authentication-bg svg.logo {
   width: 40%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.authentication-form {
   padding: 2rem;
-  border-radius: 15px;
+  height: 100vh;
 }
-.authentication h2 {
-  text-align: center;
+.authentication-form img {
+  width: 40px;
 }
-.authentication form {
-  padding: 1rem;
+.authentication-form h1 {
+  font-size: 4rem;
+  margin: 20px 0;
+}
+.authentication-form h2 {
+  font-size: 2rem;
+}
+.authentication-inputs {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-top: 20px;
 }
 
-.authentication label {
-  display: block;
-  width: 100%;
-  padding: 1rem 0;
+.authentication-inputs input {
+  height: 2.5rem;
+  font-size: 1rem;
+  padding: 1.3rem 0.5rem;
+  margin: 10px 0;
+  border: 1px solid #3333;
+  border-radius: 34px;
 }
-.authentication input {
-  display: block;
-  width: 100%;
-  padding: 0.6rem;
-}
-.authentication img {
-  width: 100%;
-  border-radius: 15px;
-}
-.authentication p {
-  text-align: center;
-}
-.authentication a {
-  cursor: pointer;
-  color: blue;
-}
-.authentication button {
-  width: 100%;
-  border: none;
-  border-radius: 10px;
+
+.authentication-inputs button {
+  width: 80px;
+  height: 40px;
+  background: #000;
   color: #fff;
-  padding: 0.8rem 3rem;
+  border: none;
+  margin: 1rem 0;
+  border-radius: 34px;
+  cursor: pointer;
+}
+.authentication-form button {
+  width: 150px;
+  height: 40px;
+  background: #4285f4;
+  color: #fff;
+  border: none;
+  border-radius: 34px;
+  cursor: pointer;
+  margin-bottom: 20px;
   font-weight: bold;
-  background-color: #17a2b8;
-  font-size: 15px;
+}
+.no-account {
+  cursor: pointer;
+  color: #4285f4;
 }
 .add-new-tweet {
   position: relative;
@@ -241,6 +234,10 @@ h1 {
   fill: rgba(29, 161, 242, 1);
   padding: 1rem;
   padding-left: 0;
+}
+.upload {
+  width: 30% !important;
+  height: 20% !important;
 }
 form {
   background-color: #161b22;

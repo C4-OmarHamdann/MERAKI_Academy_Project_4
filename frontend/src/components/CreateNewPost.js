@@ -65,7 +65,8 @@ const CreateNewPost = ({ token, allPost, userName, avatarUser }) => {
             placeholder="What's happening?"
           ></textarea>
         </div>
-
+        <br />
+        {file && <img height={300} src={URL.createObjectURL(file)} alt="" />}
         <div className="new-tweet-options">
           <div className="add-icons">
             <svg
@@ -86,8 +87,7 @@ const CreateNewPost = ({ token, allPost, userName, avatarUser }) => {
             type="file"
             className="tweet-upload"
           ></input>
-          <br />
-          {file && <img height={300} src={URL.createObjectURL(file)} alt="" />}
+
           <div className="tweet">
             <div className="btn tweet-btn text-center">
               <button type="button" onClick={addNewPost}>

@@ -10,7 +10,9 @@ const UploadFile = ({ file, setFile }) => {
         type="file"
       ></input>
       <br />
-      {file && <img height={300} src={URL.createObjectURL(file)} alt="" />}
+      {file && (
+        <img className="upload" src={URL.createObjectURL(file)} alt="" />
+      )}
     </div>
   );
 };
