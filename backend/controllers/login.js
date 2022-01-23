@@ -27,7 +27,7 @@ const login = (req, res) => {
         const payload = {
           userId: result._id,
           userName: result.userName,
-          name: result.firstName + " " + result.lastName,
+          name: result.firstName,
           country: result.country,
           avatar: result?.fileName,
         };
