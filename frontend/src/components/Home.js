@@ -93,14 +93,14 @@ const Home = ({ token }) => {
 
   //function
   const updatePost = (id) => {
+    setUpdated(!updated);
+
     axios
       //send data from body object
       .put(`http://localhost:5000/postes/${id}`, {
         poste: newPost,
       })
       .then((result) => {
-        setUpdated(!updated);
-
         allPostes();
       })
       .catch((err) => {
@@ -157,13 +157,10 @@ const Home = ({ token }) => {
             <h5>{"@" + el.userName}</h5>
             {userName === el.userName ? (
               <>
-                <button
-                  type="button"
-                  className="delete-button"
-                  id={el._id}
-                  onClick={deletePoste}
-                >
+                <button type="button" className="delete-button">
                   <svg
+                    id={el._id}
+                    onClick={deletePoste}
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
@@ -174,13 +171,10 @@ const Home = ({ token }) => {
                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
                   </svg>
                 </button>
-                <button
-                  type="button"
-                  className="update-button"
-                  id={el._id}
-                  onClick={() => updatePost(el._id)}
-                >
+                <button type="button" className="update-button">
                   <svg
+                    id={el._id}
+                    onClick={() => updatePost(el._id)}
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
@@ -231,7 +225,7 @@ const Home = ({ token }) => {
                 required
               />
             </div>
-            {userName === el.commenter ? (
+            {userName === el.userName ? (
               <>
                 {updated ? (
                   <>
