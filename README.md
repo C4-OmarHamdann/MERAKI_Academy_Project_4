@@ -1,61 +1,64 @@
+# MERAKI_Academy_Project_4
+MERAKI_Academy_Project_4
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+ <img width=200px height=200px src="https://user-images.githubusercontent.com/93857681/150646646-d57eecd5-21cb-4d52-be1e-d47d1917f5de.png" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Project Title</h3>
+<h3 align="center">Twitter Clone</h3>
 
 ---
 
-<p align="center"> Few lines describing your project.
-    <br> 
+<p align="center">Platform To Communicate With People
+
 </p>
 
 ## 📝 Table of Contents
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Usage](#usage)
 - [Built Using](#built_using)
 - [Guided By](#guided_by)
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+Twitter is a microblogging and social networking service on which users post and interact with messages known as "tweets". Registered users can post, comment, and retweet tweets.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
-
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
-
-```
-Give examples
-```
+- [MongoDB](https://www.mongodb.com/) 
+- [NPM](https://docs.npmjs.com/cli/v6/commands/npm-install)
+- [nodemon](https://nodemon.io/) 
+- [Node JS](https://nodejs.org/en/) 
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
-
+clone the repository to your local machin
 ```
-Give the example
+https://github.com/C4-OmarHamdann/MERAKI_Academy_Project_4
+```
+open backend folder and install required packages
+```
+cd backend && npm i
+```
+open frontend folder and install required packages
+```
+cd frontend && npm i
+```
+to start server (in backend folder)
+```
+npm start
+```
+to start react (in frontend folder)
+```
+npm start
 ```
 
-And repeat
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo.
-
-## 🎈 Usage <a name="usage"></a>
-
-Add notes about how to use the system.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
